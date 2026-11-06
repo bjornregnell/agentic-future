@@ -9,6 +9,9 @@ import taggy.*
 def and = "\\&"
 def nl = "~\\\\{}"
 
+def titleSv = "Vår agentiska framtid?"
+def titleEn = "Our agentic Future?"
+
 def wikipediaAI_sv = "https://sv.wikipedia.org/wiki/Artificiell_intelligens"
 def wikipediaAI_en = "https://en.wikipedia.org/wiki/Artificial_intelligence"
 def bjornHomepage = "https://cs.lth.se/bjorn-regnell/"
@@ -20,7 +23,7 @@ def thisPresentation = "https://github.com/bjornregnell/agentic-future/"
   slidesSwedish.toPdf(out = "agentic-future-sv")
   slidesEnglish.toPdf(out = "agentic-future-en")
 
-def slidesSwedish = document("Vår agentiska framtid?", author = "Björn Regnell"):
+def slidesSwedish = document(titleSv, author = "Björn Regnell"):
   frame("Vem är jag?"):
     image(file = bjornImgPath, width = 0.2)
     itemize:
@@ -35,7 +38,7 @@ def slidesSwedish = document("Vår agentiska framtid?", author = "Björn Regnell
     itemize:
       p(s"Denna presentation: $thisPresentation")
 
-def slidesEnglish = document("Our agentic Future?", author = "Björn Regnell"):
+def slidesEnglish = document(titleEn, author = "Björn Regnell"):
   frame("Who am I?"):
     image(file = bjornImgPath, width = 0.2)
     itemize:
