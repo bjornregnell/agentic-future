@@ -23,7 +23,7 @@ def slidesSwedish = document("Vår agentiska framtid?", author = "Björn Regnell
     itemize:
       p("Björn Regnell, professor i programvarusystem")
       p("Institutionen för datavetenskap, LTH, Lunds universitet https://cs.lth.se/bjorn-regnell/")
-      p("Forskning: kravhantering, programvarukvalitet")
+      p("Forskning: kravhantering, programvarukvalitet, agentisk programvaruteknik")
       p(s"Undervisning: programmering, kravhantering")
       p("Medlem i kommittén för programmeringsspråket Scala: https://docs.scala-lang.org/sips/process-specification.html#the-sip-committee")
 
@@ -38,7 +38,7 @@ def slidesEnglish = document("Our agentic Future?", author = "Björn Regnell"):
     itemize:
       p("Björn Regnell, professor in Software Engineering")
       p("Department of Computer Science, LTH, Lund University https://cs.lth.se/bjorn-regnell/")
-      p("Research: Requirements Engineering, Software Quality")
+      p("Research: Requirements Engineering, Software Quality, Agentic Software Engineering")
       p(s"Teaching: Programming, Requirements Engineering")
       p("Member of the committee for the Scala programming language: https://docs.scala-lang.org/sips/process-specification.html#the-sip-committee")
 
