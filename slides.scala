@@ -7,42 +7,45 @@
 import taggy.*
 
 def outSv = "agentic-future-sv"
-def outEn = "agentic-future-en"
+//def outEn = "agentic-future-en"
 
 def and = "\\&"
 def nl = "~\\\\{}"
+def vspace(em: Double = 0.5)(using taggy: Tree) = p(s"~\\vspace{${em}em}")
 
 def titleSv = "Vår agentiska framtid?"
-def titleEn = "Our agentic Future?"
-def author = "Björn Regnell"
-
-def wikipediaAI_sv = "https://sv.wikipedia.org/wiki/Artificiell_intelligens"
-def wikipediaAI_en = "https://en.wikipedia.org/wiki/Artificial_intelligence"
-def bjornHomepage = "https://cs.lth.se/bjorn-regnell/"
-def bjornImgPath = "../img/br.jpg"
-def sipCommittee = "https://docs.scala-lang.org/sips/process-specification.html#the-sip-committee"
+def author = s"Björn Regnell$nl https://cs.lth.se/bjorn-regnell/"
 def thisPresentation = "https://github.com/bjornregnell/agentic-future/"
 
 @main def run = 
   slidesSwedish.toPdf(out = outSv)
-  slidesEnglish.toPdf(out = outEn)
 
 def slidesSwedish = document(titleSv, author = author):
-  frame("Vem är jag?"):
-    image(file = bjornImgPath, width = 0.2)
-    itemize:
-      p("Björn Regnell, professor i programvarusystem")
-      p(s"Institutionen för datavetenskap, LTH, Lunds universitet $bjornHomepage")
-      p("Forskning: kravhantering, programvarukvalitet, agentisk programvaruteknik")
-      p(s"Undervisning: programmering, kravhantering")
-      p(s"Medlem i kommittén för programmeringsspråket Scala: $sipCommittee")
-
   frame("Agenda"):
     itemize:
+      p(s"Är AI en bubbla?")
       p(s"Vad är en agent?")
       p(s"Vad innebär agentisk programvaruteknik?")
       p(s"Hur påverkas systemutvecklares arbetsuppgifter?")
       p(s"Hur påverkas arbetsmarknaden för systemutvecklare?")
+
+  frame("Är AI en bubbla?"):
+    p("Rusning till teknikinvesteringar har historiskt lett till:")
+    enumerate:
+      p("spruckna bubblor")
+      p("långsiktig, omstörtande samhällsomvandling")
+    vspace()
+    p("Jämför:")
+    itemize:
+      p("''Järnvägspaniken'' 1873 -> industrialiseringen")
+      p("''Dot-com-bubblan'' 1997 -> digitaliseringen")
+    vspace()
+    p("Vad händer om AI-företagens aktier kraschar?")
+    itemize:
+      p("Minnespriserna sjunker och AI-chippen blir billagare")
+      p("Ökad investering i **lokal** AI-infrastrukur")
+    vspace()
+    p("Vi behöver demokratisk reglering, AI-suveränitet och hållbar AI!")
 
   frame("Vad är en agent?"):
     p(s"En agent består av 3 delar: *modell+loop+rigg*")
@@ -92,15 +95,31 @@ def slidesSwedish = document(titleSv, author = author):
       p(s"Mer fokus på:$nl mål, krav, domänkunskap, arkitekturbeslut, framgångskriterier, uppföljning, granskning, hållbar kodbas$nl (snarare än själva programmeringen)")
       p(s"Entreprenörer och erfarna utvecklare gynnas (?)$nl De som gillar att skapa värde med kod blir kanske glada...")
       p(s"Kodkonstnärer och juniora utvecklare missgynnas (?)$nl De som gillar att vara kreativa och själv programmera vacker kod blir kanske ledsna...")
-      p("Hundratals agenter igång över natten: stress och press att använda alla tokens till något vettigt, stress och press från chefer att leverera fler features")
+      p("Hundratals agenter igång över natten:")
+      itemize:
+        p("stress och press att använda alla tillgängliga tokens")
+        p("stress och press att leverera fler features per tidsenhet")
 
   frame("Hur påverkas arbetsmarknaden för systemutvecklare?"):
+    p(s"Vad händer om priset på kodning sjunker drastiskt?\\pause ")
+    itemize: 
+      p(s"efterfrågan på kod ökar")
+      p(s"efterfrågan på erfarna utvecklare ökar")
+      p(s"uppskalning av utvecklingsprocessen: *''software factory''*")
+      p(s"hållbarhet i kompetensutevclingen:$nl *''re-skilling''*, *''on-boarding''*")
+    vspace(-0.5)
+    p(s"Vad blir extra viktigt inom AI-baserad programvaruteknik?\\pause ")
     itemize:
-      p(s"Vad händer om priset på kodning sjunker drastiskt?")
+      p("att vinna kapplöpningen mot elaka hackare")
+      itemize:
+        p("ökade krav på säkerhet, investering i *cyber security*")
+      p(s"rådighet, säkerhet och deterministism i byggkedjan")
+      itemize:
+        p("lokal AI-infrastruktur")
+        p("säkra språk")
+        p("säkra körmiljöer")
+      p("specifikationsdriven utveckling")
 
-  frame("Är AI en bubbla?"):
-    p("Jämför järnvägspaniken 1873 och dot-com-bubblan 1997.")
-    p("Vad händer om AI-företagens aktier kraschar?")
 
   frame("ETSN15 Kravhantering"):
     p("Läs denna kurs och bli attraktiv på framtida arbetsmarknaden!")
@@ -122,18 +141,3 @@ def slidesSwedish = document(titleSv, author = author):
     textSize(10,10) 
     itemize:
       p(s"Denna presentation: $thisPresentation")
-
-def slidesEnglish = document(titleEn, author = author):
-  frame("Who am I?"):
-    image(file = bjornImgPath, width = 0.2)
-    itemize:
-      p("Björn Regnell, professor in Software Engineering")
-      p(s"Department of Computer Science, LTH, Lund University $bjornHomepage")
-      p("Research: Requirements Engineering, Software Quality, Agentic Software Engineering")
-      p(s"Teaching: Programming, Requirements Engineering")
-      p(s"Member of the committee for the Scala programming language: $sipCommittee")
-
-  frame("Thank you!"):
-    textSize(10,10)
-    itemize:
-      p(s"This presentation: $thisPresentation")
