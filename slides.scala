@@ -12,12 +12,13 @@ def outSv = "agentic-future-sv"
 def and = "\\&"
 def nl = "~\\\\{}"
 def vspace(em: Double = 0.5)(using taggy: Tree) = p(s"~\\vspace{${em}em}")
+def pause = "\\pause"
 
 def titleSv = "Vår agentiska framtid?"
 def author = s"Björn Regnell$nl https://cs.lth.se/bjorn-regnell/"
 def thisPresentation = "https://github.com/bjornregnell/agentic-future/"
 
-@main def run = 
+@main def run(): Unit = 
   slidesSwedish.toPdf(out = outSv)
 
 def slidesSwedish = document(titleSv, author = author):
@@ -46,6 +47,13 @@ def slidesSwedish = document(titleSv, author = author):
       p("Ökad investering i **lokal** AI-infrastrukur")
     vspace()
     p("Vi behöver demokratisk reglering, AI-suveränitet och hållbar AI!")
+
+  frame("Hur funkar en tjattbot?"):
+    itemize:
+      p(s"En språkmodell är bara en funktion: `String => String`")
+      p(s"Indatasträngen kallas ''fråga'' eller ''prompt'' och utdata kallas ''svar''")
+      p(s"En tjattbot ackumulerar prompter och svar")
+      p(s"Sekvensen av par av prompt+svar blir bara *längre och längre*")
 
   frame("Vad är en agent?"):
     p(s"En agent består av 3 delar: *modell+loop+rigg*")
@@ -134,8 +142,18 @@ def slidesSwedish = document(titleSv, author = author):
         p("Praktiskt projekt")
       p("https://lunduniversity.github.io/krav/")
       p("https://kurser.lth.se/kursplaner/senaste/ETSN15.html")
+
+  frame("Min pågående forskning inom programvaruteknik"):
+    p("Mina nuvarande fokusområden:")
+    itemize:
+      p("Specification-Driven Development (SDD)")
+      p("Agentic Software ENgineering (ASE)")
+
+    p("Några delresultat redo att testas:")
+    itemize:
       p("https://reqt.github.io/")
       p("https://genscalator.ai/")
+
 
   frame("Tack!"):
     textSize(10,10) 
