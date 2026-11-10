@@ -189,9 +189,11 @@ def slidesSwedish = document(titleSv, author = author):
     itemize:
       p(s"Denna presentation: $thisPresentation")
 
-
 def slidesEnglish =
-  () // TODO copy+translate all swedish slides to here
+  '''spec
+    * TODO: copy and translate all swedish slides below
+  '''
+  () 
 
 object LatexHelpers:
   def and = "\\&"
