@@ -48,12 +48,19 @@ def slidesSwedish = document(titleSv, author = author):
     vspace()
     p("Vi behöver demokratisk reglering, AI-suveränitet och hållbar AI!")
 
-  frame("Hur funkar en tjattbot?"):
+  frame("Hur beter sig en tjattbot?"):
     itemize:
-      p(s"En språkmodell är bara en funktion: `String => String`")
-      p(s"Indatasträngen kallas ''fråga'' eller ''prompt'' och utdata kallas ''svar''")
-      p(s"En tjattbot ackumulerar prompter och svar")
-      p(s"Sekvensen av par av prompt+svar blir bara *längre och längre*")
+      p("En tjattbot är ett program som använder en språkmodell för att generera svar på frågor.")
+      p(s"En språkmodell är bara en funktion: `String => String` $nl så det behövs mer kod för att skapa en fråga-svar-loop.")
+      p(s"Indatasträngen kallas ''fråga'' eller ''prompt'' $nl Utdata kallas ''svar''")
+      p(s"En tjattbot ackumulerar prompter och svar i en sekvens")
+      p(s"Denna sekvens blir alltså bara *längre och längre*...")
+      p(s"När språkmodellen genererar svar ligger indata i ett begränsat minne som kallas **kontext**")
+      p(s"Kontexthantering: (eng. *context management*)")
+      itemize:
+        p("Context fill")
+        p("Contex rot")
+        p("Smart Zone -> Dumb Zone")
 
   frame("Vad är en agent?"):
     p(s"En agent består av 3 delar: *modell+loop+rigg*")
