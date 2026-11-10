@@ -13,10 +13,18 @@ def and = "\\&"
 def nl = "~\\\\{}"
 def vspace(em: Double = 0.5)(using taggy: Tree) = p(s"~\\vspace{${em}em}")
 def pause = "\\pause"
+// set black background for current frame only (global set + reset after this page is shipped out)
+def blackBackground(using taggy: Tree) = p(
+  "~{\\globaldefs=1 \\setbeamercolor{background canvas}{bg=black}}" +
+  "\\AddToHookNext{shipout/after}{{\\globaldefs=1 \\setbeamercolor*{background canvas}{parent=normal text}}}"
+)
 
 def titleSv = "Vår agentiska framtid?"
 def author = s"Björn Regnell$nl https://cs.lth.se/bjorn-regnell/"
 def thisPresentation = "https://github.com/bjornregnell/agentic-future/"
+
+def factoryLandscape = "../img/cottonopolis.jpeg"
+def claudeContext = "../img/claude-context.png"
 
 @main def run(): Unit = 
   slidesSwedish.toPdf(out = outSv)
@@ -49,24 +57,28 @@ def slidesSwedish = document(titleSv, author = author):
     p("Vi behöver demokratisk reglering, AI-suveränitet och hållbar AI!")
 
   frame("Hur beter sig en tjattbot?"):
+    textSize(fontSize = 9, lineSpace = 11)
     itemize:
-      p("En tjattbot är ett program som använder en språkmodell för att generera svar på frågor.")
-      p(s"En språkmodell är bara en funktion: `String => String` $nl så det behövs mer kod för att skapa en fråga-svar-loop.")
-      p(s"Indatasträngen kallas ''fråga'' eller ''prompt'' $nl Utdata kallas ''svar''")
-      p(s"En tjattbot ackumulerar prompter och svar i en sekvens")
+      p("En **tjattbot** är ett program som ger svar på frågor mha en **språkmodell**.")
+      p(s"$pause En språkmodell är ''bara'' en (stokastisk) textfunktion:$nl `String => String` $nl så det behövs mer kod för att skapa en *fråga-svar-loop*.")
+      p(s"Indata: frågesekvens, ä.k. ''prompt''; Utdata: stegvisa svar")
+      p(s"''token'': minsta textenheten som är indata/utdata till modellen")
+      p(s"$pause En tjattbot ackumulerar prompter och svar i en sekvens")
       p(s"Denna sekvens blir alltså bara *längre och längre*...")
       p(s"När språkmodellen genererar svar ligger indata i ett begränsat minne som kallas **kontext**")
-      p(s"Kontexthantering: (eng. *context management*)")
+      p(s"$pause Kontexthantering: (eng. *context management*)")
       itemize:
         p("Context fill")
         p("Contex rot")
         p("Smart Zone -> Dumb Zone")
+      p(s"$pause **Problem**: glömska, överlastad kontext, irrelevanta svar, förlegad kontext, redundans, slöseri med tokens")
+
+  
 
   frame("Vad är en agent?"):
     p(s"En agent består av 3 delar: *modell+loop+rigg*")
     itemize:
       p(s"**Språkmodell**: `String => String` \\hfill{\\emph{t.ex. Opus}}")
-      p(s"**Beslutsmodell**: `String => enum` \\hfill{\\emph{t.ex. Jev}}")
       p(s"**Agentloop**: agerar i verkliga världen för att uppnå mål")
       itemize:
         p("Prompt och kontexthantering: mål som ska uppfyllas")
@@ -83,7 +95,10 @@ def slidesSwedish = document(titleSv, author = author):
           p(s"https://openai.com/codex/")
           p(s"https://OpenCode.ai")
           p(s"https://Pi.dev")
-          p(s"https://typesafe.ai/")
+
+  frame(""):
+    blackBackground
+    image(file = claudeContext, width = 1.0)
 
   frame("Vad innebär agentisk programvaruteknik?"):
     itemize:
@@ -105,15 +120,9 @@ def slidesSwedish = document(titleSv, author = author):
           p("Leverans (*continuous integration,continuous delivery*)")
           p("Drift (uppskalning, utskalning med hjälp av molninfrastruktur)")
 
-  frame("Hur påverkas systemutvecklares arbetsuppgifter?"):
-    itemize:
-      p(s"Mer fokus på:$nl mål, krav, domänkunskap, arkitekturbeslut, framgångskriterier, uppföljning, granskning, hållbar kodbas$nl (snarare än själva programmeringen)")
-      p(s"Entreprenörer och erfarna utvecklare gynnas (?)$nl De som gillar att skapa värde med kod blir kanske glada...")
-      p(s"Kodkonstnärer och juniora utvecklare missgynnas (?)$nl De som gillar att vara kreativa och själv programmera vacker kod blir kanske ledsna...")
-      p("Hundratals agenter igång över natten:")
-      itemize:
-        p("stress och press att använda alla tillgängliga tokens")
-        p("stress och press att leverera fler features per tidsenhet")
+  frame(""):
+    image(file = factoryLandscape, width = 1.0)
+    p(" https://en.wikipedia.org/wiki/Jevons_paradox")
 
   frame("Hur påverkas arbetsmarknaden för systemutvecklare?"):
     p(s"Vad händer om priset på kodning sjunker drastiskt?\\pause ")
@@ -123,7 +132,7 @@ def slidesSwedish = document(titleSv, author = author):
       p(s"uppskalning av utvecklingsprocessen: *''software factory''*")
       p(s"hållbarhet i kompetensutevclingen:$nl *''re-skilling''*, *''on-boarding''*")
     vspace(-0.5)
-    p(s"Vad blir extra viktigt inom AI-baserad programvaruteknik?\\pause ")
+    p(s"$pause Vad blir extra viktigt inom AI-baserad programvaruteknik?\\pause ")
     itemize:
       p("att vinna kapplöpningen mot elaka hackare")
       itemize:
@@ -135,6 +144,26 @@ def slidesSwedish = document(titleSv, author = author):
         p("säkra körmiljöer")
       p("specifikationsdriven utveckling")
 
+
+  frame("Hur påverkas systemutvecklares arbetsuppgifter?"):
+    itemize:
+      p(s"**Större fokus på**: mål, krav, domänkunskap, arkitekturbeslut, framgångskriterier, uppföljning, granskning, långsiktigt hållbar kodbas $pause ")
+      itemize:
+        p(s"Entreprenörer och erfarna utvecklare gynnas och$nl de som gillar att skapa värde med kod blir glada?")
+        p(s"Kodkonstnärer och juniora utvecklare missgynnas och$nl de som gillar att vara kreativa med vacker kod blir ledsna?")
+
+      p(s"$pause Hundratals agenter igång över natten:")
+      itemize:
+        p("stress och press att använda alla tillgängliga tokens")
+        p("stress och press att leverera fler features per tidsenhet")
+        p("ansvarsfulla arbetsgivare blir vinnare?")
+      p(s"$pause Olika slags ''skulder'' som riskerar byggas upp när agenter sprutar ur sig en massa kod med slumpmässiga buggar:")
+      itemize:
+        p(s"*technical debt:* kortsiktig leverans före långsiktig kvalitet")
+        p(s"*cognitive debt:* människors systemförståelse eroderar")
+        p(s"*intent debt:* avsaknad eller erosion av explicita krav")
+        p(s"https://arxiv.org/abs/2603.22106 (Storey, 2026)")
+  
 
   frame("ETSN15 Kravhantering"):
     p("Läs denna kurs och bli attraktiv på framtida arbetsmarknaden!")
@@ -160,7 +189,6 @@ def slidesSwedish = document(titleSv, author = author):
     itemize:
       p("https://reqt.github.io/")
       p("https://genscalator.ai/")
-
 
   frame("Tack!"):
     textSize(10,10) 
