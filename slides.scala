@@ -1,6 +1,7 @@
 //> using dep "taggy:taggy:1.0.1,url=https://github.com/bjornregnell/taggy/releases/download/v1.0.1/taggy_3-1.0.1.jar"
-//> using scala 3
+//> using scala 3.nightly
 
+import language.experimental.magic
 //  run this command in terminal to create slidesSwedish in target 
 //  scala-cli run .
 
@@ -9,15 +10,8 @@ import taggy.*
 def outSv = "agentic-future-sv"
 def outEn = "agentic-future-en" //TODO
 
-def and = "\\&"
-def nl = "~\\\\{}"
-def vspace(em: Double = 0.5)(using taggy: Tree) = p(s"~\\vspace{${em}em}")
-def pause = "\\pause"
-// set black background for current frame only (global set + reset after this page is shipped out)
-def blackBackground(using taggy: Tree) = p(
-  "~{\\globaldefs=1 \\setbeamercolor{background canvas}{bg=black}}" +
-  "\\AddToHookNext{shipout/after}{{\\globaldefs=1 \\setbeamercolor*{background canvas}{parent=normal text}}}"
-)
+
+export LatexHelpers.*
 
 def titleSv = "Vår agentiska framtid?"
 def titleEn = "Our agentic future?"
@@ -200,3 +194,19 @@ def slidesSwedish = document(titleSv, author = author):
 
 def slidesEnglish =
   () // TODO copy+translate all swedish slides to here
+
+object LatexHelpers:
+  def and = "\\&"
+  def nl = "~\\\\{}"
+  def vspace(em: Double = 0.5)(using taggy: Tree) = p(s"~\\vspace{${em}em}")
+  def pause = "\\pause"
+
+  def blackBackground(using taggy: Tree) = 
+    '''spec
+      set black background for current frame only 
+      (global set + reset after this page is shipped out)
+    '''
+    p(
+      "~{\\globaldefs=1 \\setbeamercolor{background canvas}{bg=black}}" +
+      "\\AddToHookNext{shipout/after}{{\\globaldefs=1 \\setbeamercolor*{background canvas}{parent=normal text}}}"
+  )
