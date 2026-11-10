@@ -7,7 +7,7 @@
 import taggy.*
 
 def outSv = "agentic-future-sv"
-//def outEn = "agentic-future-en"
+def outEn = "agentic-future-en" //TODO
 
 def and = "\\&"
 def nl = "~\\\\{}"
@@ -20,6 +20,7 @@ def blackBackground(using taggy: Tree) = p(
 )
 
 def titleSv = "Vår agentiska framtid?"
+def titleEn = "Our agentic future?"
 def author = s"Björn Regnell$nl https://cs.lth.se/bjorn-regnell/"
 def thisPresentation = "https://github.com/bjornregnell/agentic-future/"
 
@@ -28,6 +29,7 @@ def claudeContext = "../img/claude-context.png"
 
 @main def run(): Unit = 
   slidesSwedish.toPdf(out = outSv)
+  //slidesEnglish.toPdf(out = outEn) //TODO
 
 def slidesSwedish = document(titleSv, author = author):
   frame("Agenda"):
@@ -194,3 +196,7 @@ def slidesSwedish = document(titleSv, author = author):
     textSize(10,10) 
     itemize:
       p(s"Denna presentation: $thisPresentation")
+
+
+def slidesEnglish =
+  () // TODO copy+translate all swedish slides to here
