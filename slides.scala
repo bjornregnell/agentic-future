@@ -1,17 +1,15 @@
 //> using dep "taggy:taggy:1.0.1,url=https://github.com/bjornregnell/taggy/releases/download/v1.0.1/taggy_3-1.0.1.jar"
 //> using scala 3.nightly
 
-import language.experimental.magic
-//  run this command in terminal to create slidesSwedish in target 
+//  run this command in terminal to create slidesSwedish in target:
 //  scala-cli run .
 
+import language.experimental.magic
 import taggy.*
+export LatexHelpers.*
 
 def outSv = "agentic-future-sv"
-def outEn = "agentic-future-en" //TODO
-
-
-export LatexHelpers.*
+def outEn = "agentic-future-en"
 
 def titleSv = "Vår agentiska framtid?"
 def titleEn = "Our agentic future?"
