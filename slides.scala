@@ -132,14 +132,14 @@ def slidesSwedish = document(titleSv, author = author):
       p(s"efterfrågan på kod ökar")
       p(s"efterfrågan på erfarna utvecklare ökar")
       p(s"uppskalning av utvecklingsprocessen: *''software factory''*")
-      p(s"hållbarhet i kompetensutevclingen:$nl *''re-skilling''*, *''on-boarding''*")
+      p(s"hållbarhet i kompetensutvecklingen:$nl *''re-skilling''*, *''on-boarding''*")
     vspace(-0.5)
     p(s"$pause Vad blir extra viktigt inom AI-baserad programvaruteknik?\\pause ")
     itemize:
       p("att vinna kapplöpningen mot elaka hackare")
       itemize:
         p("ökade krav på säkerhet, investering i *cyber security*")
-      p(s"rådighet, säkerhet och deterministism i byggkedjan")
+      p(s"rådighet, säkerhet och determinism i byggkedjan")
       itemize:
         p("lokal AI-infrastruktur")
         p("säkra språk")
@@ -185,7 +185,7 @@ def slidesSwedish = document(titleSv, author = author):
     p("Mina nuvarande fokusområden:")
     itemize:
       p("Specification-Driven Development (SDD)")
-      p("Agentic Software ENgineering (ASE)")
+      p("Agentic Software Engineering (ASE)")
 
     p("Några delresultat redo att testas:")
     itemize:
